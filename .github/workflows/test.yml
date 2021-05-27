@@ -2,9 +2,9 @@ name: Automated Test
 
 on:
   push:
-    branches: [ principal, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ principal, develop ]
+    branches: [ main ]
 
 jobs:
   build:
