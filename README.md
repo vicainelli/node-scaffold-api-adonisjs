@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Node.js >= 12.0.0
+- Node.js >= 14.15.4,
 - npm >= 6.0.0
 
 And if you don't have a database installed, you can user a Docker container.
