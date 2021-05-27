@@ -25,6 +25,9 @@ jobs:
         run: cp .env.example .env
       - name: Install dependencies
         run: yarn
+      - name: Create Database file
+        run: |
+          mkdir -p tmp
       - name: Execute tests
         run: yarn test
         env:
