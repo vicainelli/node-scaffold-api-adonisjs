@@ -1,5 +1,5 @@
 /**
- * Config source: https://git.io/JvyKy
+ * Config source: https://git.io/JY0mp
  *
  * Feel free to let us know via PR, if you find something broken in this config
  * file.
@@ -18,7 +18,7 @@ import { AuthConfig } from '@ioc:Adonis/Addons/Auth'
 */
 const authConfig: AuthConfig = {
   guard: 'api',
-  list: {
+  guards: {
     /*
     |--------------------------------------------------------------------------
     | OAT Guard
@@ -40,12 +40,16 @@ const authConfig: AuthConfig = {
       | Tokens provider
       |--------------------------------------------------------------------------
       |
-      | Uses SQL database config for managing tokens. The foreignKey column is used
-      | to make the relationship between the user and the token. You are free to
-      | use any column name here.
+      | Uses SQL database for managing tokens. Use the "database" driver, when
+      | tokens are the secondary mode of authentication.
+      | For example: The Github personal tokens
+      |
+      | The foreignKey column is used to make the relationship between the user
+      | and the token. You are free to use any column name here.
       |
       */
       tokenProvider: {
+        type: 'api',
         driver: 'database',
         table: 'api_tokens',
         foreignKey: 'user_id',
