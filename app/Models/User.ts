@@ -1,14 +1,19 @@
 import { DateTime } from 'luxon'
+import { v4 as uuid } from 'uuid'
 import Hash from '@ioc:Adonis/Core/Hash'
 import {
   column,
   beforeSave,
+  beforeCreate,
   BaseModel,
 } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column({ columnName: 'external_id' })
+  public externalId: string
 
   @column()
   public name: string
@@ -27,6 +32,12 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  /* --------------------------------- HOOKS --------------------------------- */
+  @beforeCreate()
+  public static createExternalId(user: User) {
+    user.externalId = uuid()
+  }
 
   @beforeSave()
   public static async hashPassword(user: User) {
