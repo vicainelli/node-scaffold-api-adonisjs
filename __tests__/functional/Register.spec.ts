@@ -16,6 +16,7 @@ test.group('AuthController - Register', () => {
       .expect(201)
 
     assert.exists(result.body)
+    assert.exists(result.body.external_id)
     assert.equal(result.body.email, 'vini@nodejs.com')
   })
 
